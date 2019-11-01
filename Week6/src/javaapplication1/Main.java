@@ -22,21 +22,22 @@ public class Main {
         while(option){
         System.out.println("Please select one of the following options: \nA - Add a car \nB - Remove a car \nC - View number of free Spaces/number of cars in the car park");
         String option2 = input.nextLine();
-            if (option2.equals("A")) {
+            if (option2.equals("A") || option2.equals("a")) {
                 System.out.println("Select the registration number: ");
                 String rNumber = input.nextLine();
                 Car id = new Car(rNumber);
                 add.addCar(id);
             }
-            else if (option2.equals("B")) {
+            else if (option2.equals("B" )|| option2.equals("b")) {
                 System.out.println("Select the registration number: ");
                 String r2Number = input.nextLine();
                 add.removeCar(r2Number);
             }
-            else if (option2.equals("C")) {
+            else if (option2.equals("C") || option2.equals("c")) {
                 System.out.println("There are " +add.seeOccupiedSpaces()+ " occupied spaces");
                 System.out.println("There are " +add.seeFreeSpaces()+ " free spaces");
             }
+            System.out.println("");
         }
     }
     

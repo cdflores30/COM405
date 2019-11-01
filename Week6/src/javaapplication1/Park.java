@@ -17,7 +17,7 @@ public class Park {
         for (int i = 0; i < carrito.length; i++) {
             if (carrito[i] == null) {
                 carrito[i] = carrote;
-                System.out.println("Car added to park number: "+i);
+                System.out.println("\nCar added to park number: "+i);
                 return true;
             }
         }
