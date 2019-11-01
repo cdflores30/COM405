@@ -11,22 +11,10 @@ package javaapplication1;
  */
 public class Car {
     //
-    private String brand;
-    private int colour;
     private String id;
 
-    public void Car(String brandIn,int colourIn, String idIn) {
-        brand = brandIn;
-        colour=colourIn;
+    public void Car(String idIn) {
         id=idIn;
-    }
-
-    public String getCar() {
-        return brand;
-    }
-
-    public int getColour() {
-        return colour;
     }
 
     public String getId() {

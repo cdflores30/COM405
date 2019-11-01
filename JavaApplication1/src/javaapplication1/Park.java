@@ -10,5 +10,31 @@ package javaapplication1;
  * @author 4florc81
  */
 public class Park {
+    private Car[] carrito = new Car[15];
     
+    public boolean addCar(Car carrote)
+    {
+        for (int i = 0; i < carrito.length; i++) {
+            if (carrito[i] == null) {
+                carrito[i] = carrote;
+                System.out.println("Car added to park number: "+i);
+                return true;
+            }
+        }
+        System.out.println("The park is full");
+        return false;
+    }
+    
+    public boolean removeCar(String idNumber)
+    {
+        for (int i = 0; i < carrito.length; i++) {
+            if (carrito[i] != null) {
+                if (idNumber.equals(carrito[i].getId())) {
+                    carrito[i] = null;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
