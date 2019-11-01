@@ -37,4 +37,14 @@ public class Park {
         }
         return false;
     }
+    public int seeOccupiedSpaces(){
+        int occupiedSpace = 0;
+        for (Car carrito1 : carrito) {
+            if (carrito1 != null) {
+                occupiedSpace+=1;
+            }
+        }
+        return occupiedSpace;
+    }
+
 }

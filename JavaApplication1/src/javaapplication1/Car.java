@@ -13,10 +13,10 @@ public class Car {
     //
     private String id;
 
-    public void Car(String idIn) {
-        id=idIn;
+    public Car(String idIn) {
+        id = idIn;
     }
-
+    
     public String getId() {
         return id;
     }
