@@ -35,6 +35,7 @@ public class Main {
             }
             else if (option2.equals("C")) {
                 System.out.println("There are " +add.seeOccupiedSpaces()+ " occupied spaces");
+                System.out.println("There are " +add.seeFreeSpaces()+ " free spaces");
             }
         }
     }

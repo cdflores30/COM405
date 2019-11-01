@@ -46,5 +46,14 @@ public class Park {
         }
         return occupiedSpace;
     }
+     public int seeFreeSpaces(){
+        int freeSpace = 0;
+        for (Car carrito1 : carrito) {
+            if (carrito1 == null) {
+                freeSpace+=1;
+            }
+        }
+        return freeSpace;
+    }
 
 }
