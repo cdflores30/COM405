@@ -7,17 +7,21 @@ package week8.gui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
  *
  * @author 4florc81
  */
-public class GUImethod extends JFrame {
+public class GUImethod extends JFrame implements ActionListener {
 
+    private CarPark car;
     private GridBagConstraints constraints;
 
     private JLabel lblRegNo;
@@ -37,12 +41,13 @@ public class GUImethod extends JFrame {
     public GUImethod() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new GridBagLayout());
+        car= new CarPark();
         constraints = new GridBagConstraints();
         initComponents();
         layoutComponents();
     }
 
-    public void initComponents() {
+    private void initComponents() {
         lblRegNo = new JLabel("Reg No.");
         lblColour = new JLabel("Colour");
         lblMake = new JLabel("Make");
@@ -56,7 +61,9 @@ public class GUImethod extends JFrame {
         txt_model = new JTextField();
 
         btnAdd = new JButton("Add a Car");
+        btnAdd.addActionListener(this);
         btnRemove = new JButton("Remove a Car");
+        btnRemove.addActionListener(this);
     }
 
     public void layoutComponents() {
@@ -114,5 +121,23 @@ public class GUImethod extends JFrame {
         constraints.gridy = 5;
         constraints.gridx = 1;
         this.add(btnRemove, constraints);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(btnAdd)) {
+            String reg = txt_regNo.getText();
+            String colour = txt_colour.getText();
+            String make = txt_make.getText();
+            String model = txt_model.getText();
+            if (car.addCar(new Car(reg,colour,make,model))) {
+                JOptionPane.showMessageDialog(null, "Car has been added");
+                lblStatus.setText("There are " + car.seeOccupiedSpaces() + "Occupied spaces");
+            } else {
+               JOptionPane.showMessageDialog(null, "Car park full");
+            }
+        } else if (e.getSource().equals(btnRemove)) {
+            
+        }
     }
 }
