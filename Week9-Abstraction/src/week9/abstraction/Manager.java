@@ -54,4 +54,5 @@ public String toString ()
 return "Name: " + name + "\n rate of pay per year: " + getYearlySalary()+ "\n Number of Hours they are contracted per week: " + numOfHoursPerWeek
         + "Holidays entitlement: " + holidayDays ;
 }
+
 }
