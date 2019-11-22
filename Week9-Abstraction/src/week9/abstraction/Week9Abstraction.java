@@ -15,7 +15,11 @@ public class Week9Abstraction {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Employee s = new Employee ("carlos", 20000, 15,15);
+        Manager m1 = new Manager("Pipo", 20000, 15,15,12);
+        AdminStaff sq = new AdminStaff("carlos", 20000, 15,15,m1);
+        
+        System.out.println(sq.getManager());
     }
     
 }

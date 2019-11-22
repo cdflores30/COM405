@@ -23,7 +23,7 @@ public class Employee {
         holidayDays = daysIn;
     }
 
-    public void setRateOfPay(double rateOfPayIn) {
+    public void setYearlySalary(double rateOfPayIn) {
         yearlyPayment = rateOfPayIn;
     }
 
