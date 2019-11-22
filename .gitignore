@@ -16,3 +16,4 @@ nb-configuration.xml
 *.ear
 /JavaApplication1/nbproject/private/
 /Week8-GUI/nbproject/private/
+/Week9-Abstraction/nbproject/private/
