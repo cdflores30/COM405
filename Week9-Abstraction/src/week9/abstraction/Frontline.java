@@ -9,7 +9,7 @@ package week9.abstraction;
  *
  * @author 4florc81
  */
-public class Frontline extends Manager{
+public class Frontline extends Employee{
     
     public Frontline(String nameIn, double rateOfPayIn, int numofHoursIn, int daysIn) {
         super(nameIn, rateOfPayIn, numofHoursIn, daysIn);
@@ -17,8 +17,8 @@ public class Frontline extends Manager{
     
     //This time the payment is per hour 
     @Override
-    public double getYearlySalary() {
-    double weeklyPayment = rateOfPay /50 ;     
+    public double getSalary() {
+    double weeklyPayment = yearlyPayment /48 ;     
     double hourlyPayment = weeklyPayment / numOfHoursPerWeek ;
     return hourlyPayment;
     }

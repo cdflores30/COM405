@@ -9,6 +9,27 @@ package week9.abstraction;
  *
  * @author 4florc81
  */
-public class AdminStaff {
+public class AdminStaff extends Employee{
+    protected Manager mana;
+
+    public AdminStaff(String nameIn, double rateOfPayIn, int numofHoursIn, int daysIn, Manager manaIn) {
+        super(nameIn, rateOfPayIn, numofHoursIn, daysIn);
+        mana = manaIn;
+    }
     
+    public Manager getManager()
+    {
+    return mana;
+    }
+    
+    public void setManager(Manager manaIn)
+    {
+    mana = manaIn;
+    }
+    
+    @Override
+    public String toString() {
+        return "Name: " + name + "\n rate of pay per year: " + getSalary() + "\n Number of Hours they are contracted per week: " + numOfHoursPerWeek
+                + "Holidays entitlement: " + holidayDays + "Manager assigned: " + getManager();
+    }
 }
