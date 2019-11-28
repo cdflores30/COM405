@@ -9,6 +9,18 @@ package week10.polymorphish;
  *
  * @author Carlos Flores
  */
-public class Lorry {
+public class Lorry extends Vehicle{
+
+    public Lorry(String registration, double weightIn) {
+        super(registration, weightIn);
+    }
+
+    @Override
+    public double calculateFee() {
+        if (weight > 8000) {
+            return 15.00;
+        }
+        return 10.00;
+    }
     
 }
