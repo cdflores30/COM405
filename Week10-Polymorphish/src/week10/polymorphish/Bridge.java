@@ -10,7 +10,14 @@ package week10.polymorphish;
  * @author 4florc81
  */
 public class Bridge {
-    Vehicle vehic[] = new Vehicle[20];
+    private Vehicle vehic[];
+    private int maxWeight;
+
+    public Bridge(int maxWeight, int carLimit) {
+        this.maxWeight = maxWeight;
+        vehic = new Vehicle[carLimit];
+    }
+    
     
     public double calcTotalWeight(){
         double totalWeight = 0;
@@ -23,7 +30,7 @@ public class Bridge {
     }
     
     public boolean addVehicle(Vehicle vehicleIn){
-        if (calcTotalWeight() + vehicleIn.getWeight() >= 30000) {
+        if (calcTotalWeight() + vehicleIn.getWeight() >= maxWeight) {
             return false;
         }   
         for (int i = 0; i < vehic.length; i++) {

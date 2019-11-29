@@ -19,116 +19,134 @@ import javax.swing.JTextField;
  *
  * @author Carlos Flores
  */
-public class GUI extends JFrame implements ActionListener{
-Bridge brid = new Bridge();
-    
-private JLabel lbl_title;
-private JLabel lbl_currentWeight;
-private JLabel lbl_currentLoadNumeric;
-private JLabel lbl_registration;
-private JLabel lbl_vehicleWeight;
+public class GUI extends JFrame implements ActionListener {
 
-private JTextField txt_vehicleWeight;
-private JTextField txt_Registration;
+    Bridge brid = new Bridge(30000, 20);
 
-private JButton btn_Add;
-private JButton btn_Remove;
+    private JLabel lbl_title;
+    private JLabel lbl_currentWeight;
+    private JLabel lbl_currentLoadNumeric;
+    private JLabel lbl_registration;
+    private JLabel lbl_vehicleWeight;
 
-private GridBagConstraints con;
+    private JTextField txt_vehicleWeight;
+    private JTextField txt_Registration;
 
-public GUI(){
-this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-this.setLayout(new GridBagLayout());
-con = new GridBagConstraints();
-initComponents();
-layoutComponents();
-}
+    private JButton btn_Add;
+    private JButton btn_Remove;
 
-public void initComponents(){
-lbl_title = new JLabel ("Bridge System");
-lbl_currentWeight = new JLabel ("Current Load :");
-lbl_currentLoadNumeric = new JLabel ("");
-lbl_registration = new JLabel ("Registration: ");
-lbl_vehicleWeight = new JLabel ("Weight: ");
-txt_vehicleWeight = new JTextField();
-txt_Registration = new JTextField();
+    private GridBagConstraints con;
 
-btn_Add = new JButton("Add Vehicle");
-btn_Add.addActionListener(this);
-btn_Remove = new JButton("Remove Vehicle");
-btn_Remove.addActionListener(this);
-}
+    public GUI() {
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLayout(new GridBagLayout());
+        con = new GridBagConstraints();
+        initComponents();
+        layoutComponents();
+    }
 
-public void layoutComponents(){
-con.gridx = 0;
-con.gridy = 0;
-con.gridwidth = 2;
-this.add(lbl_title, con);
+    public void initComponents() {
+        lbl_title = new JLabel("Bridge System");
+        lbl_currentWeight = new JLabel("Current Load :");
+        lbl_currentLoadNumeric = new JLabel("0");
+        lbl_registration = new JLabel("Registration: ");
+        lbl_vehicleWeight = new JLabel("Weight: ");
+        txt_vehicleWeight = new JTextField();
+        txt_Registration = new JTextField();
 
-con.gridx = 0;
-con.gridy = 1;
-con.gridwidth = 1;
-this.add(lbl_currentWeight, con);
+        btn_Add = new JButton("Add Vehicle");
+        btn_Add.addActionListener(this);
+        btn_Remove = new JButton("Remove Vehicle");
+        btn_Remove.addActionListener(this);
+    }
 
-con.gridx = 1;
-con.gridy = 1;
-this.add(lbl_currentLoadNumeric, con);
+    public void layoutComponents() {
+        con.gridx = 0;
+        con.gridy = 0;
+        con.gridwidth = 2;
+        this.add(lbl_title, con);
 
-con.gridx = 0;
-con.gridy = 2;
-this.add(lbl_registration, con);
+        con.gridx = 0;
+        con.gridy = 1;
+        con.gridwidth = 1;
+        this.add(lbl_currentWeight, con);
 
-con.gridx = 1;
-con.gridy = 2;
-con.fill = GridBagConstraints.HORIZONTAL;
-this.add(txt_Registration, con);
+        con.gridx = 1;
+        con.gridy = 1;
+        this.add(lbl_currentLoadNumeric, con);
 
-con.gridx = 0;
-con.gridy = 3;
-con.fill = GridBagConstraints.NONE;
-this.add(lbl_vehicleWeight, con);
+        con.gridx = 0;
+        con.gridy = 2;
+        this.add(lbl_registration, con);
 
-con.gridx = 1;
-con.gridy = 3;
-con.fill = GridBagConstraints.HORIZONTAL;
-this.add(txt_vehicleWeight, con);
+        con.gridx = 1;
+        con.gridy = 2;
+        con.fill = GridBagConstraints.HORIZONTAL;
+        this.add(txt_Registration, con);
 
-con.gridx = 0;
-con.gridy = 4;
-this.add(btn_Add, con);
+        con.gridx = 0;
+        con.gridy = 3;
+        con.fill = GridBagConstraints.NONE;
+        this.add(lbl_vehicleWeight, con);
 
-con.gridx = 1;
-con.gridy = 4;
-this.add(btn_Remove, con);
-}
+        con.gridx = 1;
+        con.gridy = 3;
+        con.fill = GridBagConstraints.HORIZONTAL;
+        this.add(txt_vehicleWeight, con);
+
+        con.gridx = 0;
+        con.gridy = 4;
+        this.add(btn_Add, con);
+
+        con.gridx = 1;
+        con.gridy = 4;
+        this.add(btn_Remove, con);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(btn_Add)) {
             String reg = txt_Registration.getText();
             double weight = Double.valueOf(txt_vehicleWeight.getText());
-            Vehicle v = new Car(reg,weight);
-            double fee = v.calculateFee();
-            if (brid.addVehicle(v) ){
-                
-                JOptionPane.showMessageDialog(null, "Vehicle has been added\n"+ "The price to be paid is £" + fee);
-                lbl_currentLoadNumeric.setText(String.valueOf(brid.calcTotalWeight()));
+            Vehicle veh = null;
+
+            if (weight < 500) {
+                veh = new Motorbike(reg, weight);
+                if (brid.addVehicle(veh)) {
+
+                    JOptionPane.showMessageDialog(null, "Vehicle has been added\n" + "The price to be paid is £" + veh.calculateFee());
+                    lbl_currentLoadNumeric.setText(String.valueOf(brid.calcTotalWeight()) + " Kg");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Could not be added");
+                }
+            } else if (weight >= 500 && weight <= 3500) {
+                veh = new Car(reg, weight);
+                if (brid.addVehicle(veh)) {
+
+                    JOptionPane.showMessageDialog(null, "Vehicle has been added\n" + "The price to be paid is £" + veh.calculateFee());
+                    lbl_currentLoadNumeric.setText(String.valueOf(brid.calcTotalWeight()) + " Kg");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Could not be added");
+                }
+            } else {
+                veh = new Lorry(reg, weight);
+                if (brid.addVehicle(veh)) {
+
+                    JOptionPane.showMessageDialog(null, "Vehicle has been added\n" + "The price to be paid is £" + veh.calculateFee());
+                    lbl_currentLoadNumeric.setText(String.valueOf(brid.calcTotalWeight()) + " Kg");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Could not be added");
+                }
             }
-            else{
-            JOptionPane.showMessageDialog(null, "Could not be added");
-            }
-        }
-        else if (e.getSource().equals(btn_Remove)) {
+        } else if (e.getSource().equals(btn_Remove)) {
             String reg = txt_Registration.getText();
             if (brid.removeVehicle(reg)) {
                 JOptionPane.showMessageDialog(null, "Vehicle has been removed");
+            } else {
+                JOptionPane.showMessageDialog(null, "This vehicle is not registered");
             }
-            else{
-            JOptionPane.showMessageDialog(null, "This vehicle is not registered");
-            }
-            
+
         }
     }
-
 
 }
