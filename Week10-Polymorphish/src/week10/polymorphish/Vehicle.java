@@ -11,7 +11,7 @@ package week10.polymorphish;
  */
 public abstract class Vehicle {
     protected String registrationNumber;
-    protected double weight;
+    public double weight;
     
     public Vehicle (String registration, double weightIn){
     registrationNumber= registration;

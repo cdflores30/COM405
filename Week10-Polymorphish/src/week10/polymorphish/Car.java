@@ -16,11 +16,15 @@ public class Car extends Vehicle {
     }
 
     @Override
-    public double calculateFee() {
+    public double calculateFee() {        
+        double fee=5.00;        
         if (weight > 1590) {
-            
+            double excess = weight - 1590;
+            long x = Math.round(excess/100);
+            fee = fee + x * 0.10;
+            return fee;
         }
-        return 5.00;
+        return fee;
     }
     
 }
